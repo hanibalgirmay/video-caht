@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Options = ({ children }) => {
   const {
-    meID,
+    me,
     callAccepted,
     name,
     setName,
@@ -72,7 +72,7 @@ const Options = ({ children }) => {
                 onChange={(e) => setName(e.target.value)}
                 fullWidth
               />
-              <CopyToClipboard text={meID} className={classes.margin}>
+              <CopyToClipboard text={me} className={classes.margin}>
                 <Button
                   variant="contained"
                   color="primary"

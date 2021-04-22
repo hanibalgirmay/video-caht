@@ -25,8 +25,8 @@ const useStyles = makeStyles((theme) => ({
 
 const VideoPlayer = () => {
   const {
-    name,
     callAccepted,
+    name,
     my_video,
     user_video,
     callEnd,

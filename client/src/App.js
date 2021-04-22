@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function App() {
+const App = () => {
   const style = useStyles();
 
   return (
@@ -49,6 +49,6 @@ function App() {
       </Options>
     </div>
   );
-}
+};
 
 export default App;

@@ -4,11 +4,11 @@ import Peer from "simple-peer";
 
 const SocketContext = createContext();
 
-const socket = io("http://localhost:5000");
+const socket = io("http://localhost:4500");
 
 const ContextProvider = ({ children }) => {
   const [stream, setStream] = useState(null);
-  const [meID, setMeId] = useState("");
+  const [me, setMe] = useState("");
   const [name, setName] = useState("");
   const [call, setCall] = useState({});
   const [callAccepted, setCallAccepted] = useState(false);
@@ -26,7 +26,7 @@ const ContextProvider = ({ children }) => {
         my_video.current.srcObject = currentStream;
       });
 
-    socket.on("me", (id) => setMeId(id));
+    socket.on("me", (id) => setMe(id));
     socket.on("calluser", ({ from, name: callerName, signal }) => {
       setCall({ isRecieved: true, from, name: callerName, signal });
     });
@@ -56,7 +56,7 @@ const ContextProvider = ({ children }) => {
       socket.emit("callUser", {
         userToCall: id,
         signalData: data,
-        from: meID,
+        from: me,
         name,
       });
     });
@@ -93,7 +93,7 @@ const ContextProvider = ({ children }) => {
         name,
         setName,
         callEnd,
-        meID,
+        me,
         callUser,
         leaveCall,
         answerCall,

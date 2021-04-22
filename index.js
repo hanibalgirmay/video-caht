@@ -21,15 +21,15 @@ socket.on("connection", (io) => {
   io.emit("me", io.id);
 
   io.on("disconnect", () => {
-    io.broadcast.emit("callended");
+    io.broadcast.emit("callEnd");
   });
 
-  io.on("calluser", ({ userToCall, signalData, from, phone }) => {
-    socket.to(userToCall).emit("calluser", { signal: signalData, from: name });
+  io.on("callUser", ({ userToCall, signalData, from, name }) => {
+    socket.to(userToCall).emit("callUser", { signal: signalData, from, name });
   });
 
-  io.on("answercall", (data) => {
-    socket.to(data.to).emit("callaccepted", data.signal);
+  io.on("answerCall", (data) => {
+    socket.to(data.to).emit("callAccepted", data.signal);
   });
 });
 
